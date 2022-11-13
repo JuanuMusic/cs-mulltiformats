@@ -92,7 +92,7 @@ public class CIDv0Tests
     [Test(Description = "inspect bytes")]
     public void InspectBytes()
     {
-        byte[] byts = TestUtils.HexStringToByteArray("1220ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+        byte[] byts = Helpers.Conversions.HexStringToByteArray("1220ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
         
         CIDSpecs specs = CID.CID.InspectBytes(byts); // should only need the first few bytes
         Assert.That(specs, Is.EqualTo(new CIDSpecs {
@@ -108,7 +108,7 @@ public class CIDv0Tests
     [Test(Description = "decodeFirst - no remainder")]
     public void NoRemainder()
     {
-        byte[] byts = TestUtils.HexStringToByteArray("1220ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+        byte[] byts = Helpers.Conversions.HexStringToByteArray("1220ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 
         (CID.CID cid, byte[] remainder) = CID.CID.DecodeFirst(byts);
         
@@ -119,7 +119,7 @@ public class CIDv0Tests
     [Test(Description = "decodeFirst - remainder")]
     public void Remainder()
     {
-        byte[] byts = TestUtils.HexStringToByteArray("1220ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad0102030405");
+        byte[] byts = Helpers.Conversions.HexStringToByteArray("1220ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad0102030405");
 
         (CID.CID cid, byte[] remainder) = CID.CID.DecodeFirst(byts);
 

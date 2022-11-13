@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text.Encodings.Web;
 using Multiformats.CID;
+using Multiformats.Hashes;
 using NUnit.Framework;
 
 namespace Multiformats.Tests
@@ -43,7 +46,18 @@ namespace Multiformats.Tests
             Assert.That(CID.CID.Create(cid1.Version, cid1.Code, cid1.Multihash), Is.EqualTo(cid1));
         }
 
-
+        [Test(Description = "ToJSON()")]
+        public void ToJSON()
+        {
+            var hash = new SHA256Hasher().Digest("abc");
+            var cid = CID.CID.Create(1, 112, hash);
+            var json = cid.ToJSON();
+            var reconst = Newtonsoft.Json.JsonConvert.DeserializeObject<CID.CIDRecord>(json);
+            Assert.That(reconst, Is.Not.Null);
+            Assert.That(reconst.Version, Is.EqualTo(cid.Version));
+            Assert.That(reconst.Code, Is.EqualTo(cid.Code));
+            Assert.That(reconst.Hash, Is.EqualTo(cid.Multihash.Bytes));
+        }
     }
 }
 

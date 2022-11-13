@@ -36,7 +36,7 @@ namespace Multiformats.Tests
         public void HandlesCIDNoMultibase()
         {
             string cidStr = "bafybeidskjjd4zmr7oh6ku6wp72vvbxyibcli2r6if3ocdcy7jjjusvl2u";
-            byte[] cidBuf = TestUtils.HexStringToByteArray("017012207252523e6591fb8fe553d67ff55a86f84044b46a3e4176e10c58fa529a4aabd5");
+            byte[] cidBuf = Helpers.Conversions.HexStringToByteArray("017012207252523e6591fb8fe553d67ff55a86f84044b46a3e4176e10c58fa529a4aabd5");
             var cid = CID.CID.Decode(cidBuf);
             Assert.That(cid.Code, Is.EqualTo(112));
             Assert.That(cid.Version, Is.EqualTo(CIDVersion.CIDv1));
