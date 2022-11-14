@@ -29,7 +29,7 @@ public class CIDv0Tests
 
         Assert.That(cid.Version, Is.EqualTo(CIDVersion.CIDv0));
         Assert.That(cid.Code, Is.EqualTo(112));
-        Assert.That(cid.Multihash.Bytes, Is.EqualTo(new Base58Btc().Decode(mhStr)));
+        Assert.That(cid.Multihash.Bytes, Is.EqualTo(new Base58Btc().BaseDecode(mhStr)));
     }
 
     [Test(Description = "create by parts")]
