@@ -96,7 +96,8 @@ namespace Multiformats.Base.Tests
             var encoded = Multibase.EncodeRaw(encoding, buf);
             var decoded = Multibase.DecodeRaw(encoding, encoded);
 
-            Assert.AreEqual(decoded, buf);
+            Assert.That(decoded, Is.EqualTo(buf));
+            Console.WriteLine("done");
         }
 
         [Theory]
@@ -159,8 +160,8 @@ namespace Multiformats.Base.Tests
             var result = Multibase.TryDecode(input, out var decodedEncoding, out var decodedBytes);
 
             Assert.True(result);
-            Assert.AreEqual(encoding, decodedEncoding);
-            Assert.AreEqual(expected, Encoding.UTF8.GetString(decodedBytes));
+            Assert.That(encoding, Is.EqualTo(decodedEncoding));
+            Assert.That(expected, Is.EqualTo(Encoding.UTF8.GetString(decodedBytes)));
         }
 
         [Theory]
